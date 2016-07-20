@@ -1,13 +1,18 @@
-setwd('C:/Users/Veronica/Desktop/Veronica - ISS Services Project')
+library(shiny)
+library(plotly)
+library(ggplot2)
+setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
 isslevels = read.csv("issforcritlevels.csv")
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
-    
+shinyServer(function(input, output, session) {
+
+  #############################################################################################
+  ###############################FINANCIAL DEFICITS PAGE#######################################
+  #############################################################################################
   
-  #Financial Deficits TAB
-    #INDIVIDUAL page
+#INDIVIDUAL - FINANCIAL DEFICITS
   output$ISSPlotF <- renderPlotly({
     
     dataF <- switch(input$selectF, 
@@ -122,24 +127,31 @@ shinyServer(function(input, output) {
     )
   })
   
+  #############################################################################################
+    #COMPARISON - FINANcIAL DEFICITS
+  output$ISSLineF <- renderPlotly({
   
-  
-    #COMPARISON page of financial deficits
-  
-#output$valueF <- renderPrint({ input$checkboxF })  
-  
- # output$ISSLineF <- renderPlotly({
-  
-  
-    #pLF <- plot_ly(isslevels, x=isslevels$Button[3:14],y= ...,
-            #      name= ... ,type="line")
+    dataLF <- switch(c(input$checkboxF), 
+                    "ISS1" = isslevels$ISS1[17:27],
+                    "ISS2" = isslevels$ISS2[17:27],
+                    "ISS3" = isslevels$ISS3[17:27],
+                    "ISS4" = isslevels$ISS4[17:27],
+                    "ISS5" = isslevels$ISS5[17:27],
+                    "ISS6" = isslevels$ISS6[17:27],)
+      dataLF.mat <- subset(dataLF, subset=TRUE, select=input$checkboxF)
+    print(dataLF.mat)
+    pLF <- plot_ly(isslevels, x=isslevels$Button[17:27], y=dataLF.mat,
+                   name=c(input$checkboxF), type="line")
        
-    #layout(pLF, yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T))
- # })
+    layout(pLF, yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T))
+  })
   
-  
+#############################################################################################
+###############################CRITICALITY LEVELS PAGE#######################################
+#############################################################################################
 
-  #ISS Criticality Levels TAB
+  #Individual - Criticality Levels
+
     #output$value <- renderText({
        # paste("You have selected", input$selectC)
       #})
@@ -265,4 +277,4 @@ shinyServer(function(input, output) {
   
 })
 
-#, range=c(minx, maxx), tick0=minx, dtick=maxx
+#############################################################################################
