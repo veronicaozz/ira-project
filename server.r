@@ -132,15 +132,15 @@ shinyServer(function(input, output, session) {
   output$ISSLineF <- renderPlotly({
   
     dataLF <- switch(c(input$checkboxF), 
-                    "ISS1" = isslevels$ISS1[17:27],
-                    "ISS2" = isslevels$ISS2[17:27],
-                    "ISS3" = isslevels$ISS3[17:27],
-                    "ISS4" = isslevels$ISS4[17:27],
-                    "ISS5" = isslevels$ISS5[17:27],
-                    "ISS6" = isslevels$ISS6[17:27],)
+                    "ISS1" = isslevels$ISS1[17:28],
+                    "ISS2" = isslevels$ISS2[17:28],
+                    "ISS3" = isslevels$ISS3[17:28],
+                    "ISS4" = isslevels$ISS4[17:28],
+                    "ISS5" = isslevels$ISS5[17:28],
+                    "ISS6" = isslevels$ISS6[17:28],)
       dataLF.mat <- subset(dataLF, subset=TRUE, select=input$checkboxF)
     print(dataLF.mat)
-    pLF <- plot_ly(isslevels, x=isslevels$Button[17:27], y=dataLF.mat,
+    pLF <- plot_ly(isslevels, x=isslevels$Button[17:28], y=dataLF.mat,
                    name=c(input$checkboxF), type="line")
        
     layout(pLF, yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T))
