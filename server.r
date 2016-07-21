@@ -131,21 +131,48 @@ shinyServer(function(input, output, session) {
     #COMPARISON - FINANcIAL DEFICITS
   output$ISSLineF <- renderPlotly({
   
-    dataLF <- switch(c(input$checkboxF), 
-                    "ISS1" = isslevels$ISS1[17:28],
-                    "ISS2" = isslevels$ISS2[17:28],
-                    "ISS3" = isslevels$ISS3[17:28],
-                    "ISS4" = isslevels$ISS4[17:28],
-                    "ISS5" = isslevels$ISS5[17:28],
-                    "ISS6" = isslevels$ISS6[17:28],)
-      dataLF.mat <- subset(dataLF, subset=TRUE, select=input$checkboxF)
-    print(dataLF.mat)
-    pLF <- plot_ly(isslevels, x=isslevels$Button[17:28], y=dataLF.mat,
-                   name=c(input$checkboxF), type="line")
+   # dataLF <- switch(c(input$checkboxF), 
+               #     "ISS1" = isslevels$ISS1[17:28],
+                #    "ISS2" = isslevels$ISS2[17:28],
+                #    "ISS3" = isslevels$ISS3[17:28],
+                #    "ISS4" = isslevels$ISS4[17:28],
+                #    "ISS5" = isslevels$ISS5[17:28],
+                #    "ISS6" = isslevels$ISS6[17:28],)
+    
+    updateLF = NULL
+    dataLF <- c(input$checkboxF)
+    dataLFnames = NULL
+    
+    for (i in range(1:length(dataLF))) {
+      current <- dataLF[i]
+      temp <- switch(current, 
+           "ISS1" = isslevels$ISS1[17:28],
+           "ISS2" = isslevels$ISS2[17:28],
+           "ISS3" = isslevels$ISS3[17:28],
+           "ISS4" = isslevels$ISS4[17:28],
+           "ISS5" = isslevels$ISS5[17:28],
+           "ISS6" = isslevels$ISS6[17:28],)
+      #print(temp)
+      updateLF[[i]] <- list(temp)
+    }
+
+    datLF <- data.frame(years=c(2010, 2011, 2012, 2013, 2014, 2015, 
+                                2016, 2017, 2018, 2019, 2020, 2021), 
+                        updateLF)
+    print(datLF)
+    output$checkLF <- renderText({paste("You have selected", input$checkboxF)})
+    
+    pLF <- plot_ly(datLF, x=years, y=ISS1, type="line")
+      
+      #ggplot(gdata=datLF, aes(x=years, y=dataLF, 
+                             # group=names(datLF)) + geom_line()))
        
     layout(pLF, yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T))
   })
-  
+
+
+
+
 #############################################################################################
 ###############################CRITICALITY LEVELS PAGE#######################################
 #############################################################################################
