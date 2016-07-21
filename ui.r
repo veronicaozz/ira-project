@@ -1,7 +1,7 @@
 library(shiny)
 library(plotly)
-library(ggplot2)
 library(shinydashboard)
+library(ggplot2)
 
 setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
@@ -99,7 +99,7 @@ body <- dashboardBody(
                                       "104: Client Services" = "ISS4",
                                       "105: Claims" = "ISS5",
                                       "106: Religious Support" = "ISS6"),
-                             selected = "ISS1"), width = NULL)),
+                             selected = "ISS1"), width = NULL), box(textOutput("checkLF"), width=NULL)),
                              column(width=7, plotlyOutput("ISSLineF"))
                    )
   ))
