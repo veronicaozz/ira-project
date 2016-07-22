@@ -1,9 +1,9 @@
 library(shiny)
 library(plotly)
 library(ggplot2)
-setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
+#setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
-isslevels = read.csv("issforcritlevels.csv")
+isslevels = read.csv("issforcritlevels.csv", stringsAsFactor=FALSE)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
@@ -130,22 +130,35 @@ shinyServer(function(input, output, session) {
   #############################################################################################
     #COMPARISON - FINANcIAL DEFICITS
   output$ISSLineF <- renderPlotly({
-  
-    dataLF <- switch(c(input$checkboxF), 
-                    "ISS1" = isslevels$ISS1[17:28],
-                    "ISS2" = isslevels$ISS2[17:28],
-                    "ISS3" = isslevels$ISS3[17:28],
-                    "ISS4" = isslevels$ISS4[17:28],
-                    "ISS5" = isslevels$ISS5[17:28],
-                    "ISS6" = isslevels$ISS6[17:28],)
-      dataLF.mat <- subset(dataLF, subset=TRUE, select=input$checkboxF)
-    print(dataLF.mat)
-    pLF <- plot_ly(isslevels, x=isslevels$Button[17:28], y=dataLF.mat,
-                   name=c(input$checkboxF), type="line")
-       
-    layout(pLF, yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T))
+    
+    #process data to only what we want
+    df <- isslevels[c(17:28),]
+    #add dummy column
+    df$dummy <- NA
+    
+    #plot dummy column - this is so you will always have something to start with
+    p <- plot_ly(df, type='line', y=dummy, x=Button, showlegend = FALSE)
+    
+    #####plot additional traces based on selections
+    #capture selections
+    selected <<- input$checkboxF
+    
+    #only plot new stuff if something is selected
+    #add trace for each selection - note the eval(parse(...)) thing and evaluate=TRUE to get this to work
+    #also, set legend entries for new series
+    if(length(selected) > 0){
+      for(i in 1:length(selected)){
+        p <- add_trace(p, y=eval(parse(text=selected[i])), x=Button, evaluate=TRUE, name=selected[i])
+      }
+    }
+
+    #only change to your original was to remove some weird border from the legend
+    layout(p, yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T),
+           legend=list(bordercolor="#FFFFFF"))
+    
   })
-  
+
+
 #############################################################################################
 ###############################CRITICALITY LEVELS PAGE#######################################
 #############################################################################################

@@ -1,7 +1,7 @@
 library(shiny)
 library(plotly)
-library(ggplot2)
 library(shinydashboard)
+library(ggplot2)
 
 setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
@@ -98,7 +98,28 @@ body <- dashboardBody(
                                       "103: Criminal Law and Discipline" = "ISS3",
                                       "104: Client Services" = "ISS4",
                                       "105: Claims" = "ISS5",
-                                      "106: Religious Support" = "ISS6"),
+                                      "106: Religious Support" = "ISS6",
+                                      "107: Public Affairs" = "ISS7",
+                                      "109: Equal Employment Opportunity (EEO)" = "ISS8",
+                                      "111: Internal Review" = "ISS9",
+                                      "112: Installation Safety/Occupational Health" = "ISS10",
+                                      "115: Program Budget" = "ISS11",
+                                      "116: Support Agreement (MOU/MOA) Mgmt" = "ISS12",
+                                      "118: Installation TDA Management" = "ISS13",
+                                      "121: Management Analysis" = "ISS14",
+                                      "113: Administrative Management" = "ISS15",
+                                      "250: Substance Abuse" = "ISS16",
+                                      "800: Military Personnel Services" = "ISS17",
+                                      "803: Continuing Education Services" = "ISS18",
+                                      "202: Army Lodging Management" = "ISS19",
+                                      "251: Army Community Service" = "ISS20",
+                                      "252: Child, Youth, and School Services" = "ISS21",
+                                      "253: Sports, Recreation, and Libraries" = "ISS22",
+                                      "254: Business Operations" = "ISS23",
+                                      "201: Family Housing Management"  = "ISS24",
+                                      "414: Facilities Maintenance - Army Family Housing" = "ISS25",
+                                      "411: Facilities Maintenance - Vertical" = "ISS26",
+                                      "420: Facilities Maintenance - Horizontal" = "ISS27"),
                              selected = "ISS1"), width = NULL)),
                              column(width=7, plotlyOutput("ISSLineF"))
                    )
@@ -108,6 +129,10 @@ body <- dashboardBody(
   ############################################################################################# 
   #Content for the ISS Criticality Levels Tab
   tabItem(tabName = "criticality",
+          
+          navbarPage("Criticality Levels",
+                     tabPanel("Individual",
+          
           h3("Individual Assessment of ISS Criticality Levels"),
           fluidRow(column(width = 4, box(selectInput("selectC", label = h4("Select Installation Service"), 
                                    choices = list(
@@ -143,6 +168,8 @@ body <- dashboardBody(
           valueBoxOutput("HighCritBox", width = NULL),
           valueBoxOutput("LowCritBox", width = NULL)),
           column(width = 7, plotlyOutput("ISSPlot")))    
+  ),
+          tabPanel("Compare", h3("Comparison of ISS Criticality Levels")))
   ),
 
 #############################################################################################
