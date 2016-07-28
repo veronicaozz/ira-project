@@ -5,7 +5,8 @@ library(ggplot2)
 
 setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
-isslevels = read.csv("issforcritlevels.csv")
+isslevels = read.csv("issforcritlevels2.csv")
+riskfeed = read.csv("riskfeed.csv")
 
 header <- dashboardHeader(title = "Installation Readiness")
   
@@ -31,9 +32,57 @@ body <- dashboardBody(
     
     tabItems(
       # First tab content
-      tabItem(tabName = "home"
-    # Boxes need to be put in a row (or column)
-    
+#############################################################################################
+      
+      
+      
+      tabItem(tabName = "home",
+              h2("Risk Assessment"),
+              fluidRow(column(width = 2, box(selectInput
+                          ("selectRS", label = h4("Select Year"), 
+                            choices = list(
+                              #"100: Installation Management" = "ISS100",
+                              #"102: Administration and Civil Law" = "ISS102",
+                              #"103: Criminal Law and Discipline" = "ISS103",
+                              #"104: Client Services" = "ISS104",
+                              #"105: Claims" = "ISS105",
+                              #"106: Religious Support" = "ISS106",
+                              #"107: Public Affairs" = "ISS107",
+                              #"109: Equal Employment Opportunity (EEO)" = "ISS109",
+                              #"111: Internal Review" = "ISS111",
+                              #"112: Installation Safety/Occupational Health" = "ISS112",
+                              #"115: Program Budget" = "ISS115",
+                              #"116: Support Agreement (MOU/MOA) Mgmt" = "ISS116",
+                              #"118: Installation TDA Management" = "ISS118",
+                              #"121: Management Analysis" = "ISS121",
+                              #"113: Administrative Management" = "ISS113",
+                              #"250: Substance Abuse" = "ISS250",
+                              #"800: Military Personnel Services" = "ISS800",
+                              #"803: Continuing Education Services" = "ISS803",
+                              #"202: Army Lodging Management" = "ISS202",
+                              #"251: Army Community Service" = "ISS251",
+                              #"252: Child, Youth, and School Services" = "ISS252",
+                              #"253: Sports, Recreation, and Libraries" = "ISS253",
+                              #"254: Business Operations" = "ISS254",
+                              #"201: Family Housing Management"  = "ISS201",
+                              #"414: Facilities Maintenance - Army Family Housing" = "ISS414",
+                              #"411: Facilities Maintenance - Vertical" = "ISS411",
+                              #"420: Facilities Maintenance - Horizontal" = "ISS420"),
+                              "2010" = "Y2010",
+                              "2011" = "Y2011",
+                              "2012" = "Y2012",
+                              "2013" = "Y2013",
+                              "2014" = "Y2014",
+                              "2015" = "Y2015",
+                              "2016" = "Y2016", 
+                              "2017" = "Y2017",
+                              "2018" = "Y2018",
+                              "2019" = "Y2019",
+                              "2020" = "Y2020",
+                              "2021" = "Y2021"),
+                            selected = "Y2010"), width = NULL)),
+column(width = 10, plotlyOutput("riskscatter"))
+    )
   ),
   
   #############################################################################################

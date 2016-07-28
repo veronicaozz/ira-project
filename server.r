@@ -4,10 +4,68 @@ library(ggplot2)
 #setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
 isslevels = read.csv("issforcritlevels.csv", stringsAsFactor=FALSE)
+riskfeed = read.csv("riskfeed.csv")
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
+  #############################################################################################
+  ###############################RISK PAGE#######################################
+  #############################################################################################
+  output$riskscatter <- renderPlotly({
+    
+    dataRS <- switch(input$selectRS, 
+                   "Y2010" = riskfeed$Y2010,
+                   "Y2011" = riskfeed$Y2011,
+                   "Y2012" = riskfeed$Y2012,
+                   "Y2013" = riskfeed$Y2013,
+                   "Y2014" = riskfeed$Y2014,
+                   "Y2015" = riskfeed$Y2015,
+                   "Y2016" = riskfeed$Y2016,
+                   "Y2017" = riskfeed$Y2017,
+                   "Y2018" = riskfeed$Y2018,
+                   "Y2019" = riskfeed$Y2019,
+                   "Y2020" = riskfeed$Y2020,
+                   "Y2021" = riskfeed$Y2021,)
+    
+    defRS <- switch(input$selectRS, 
+                     "Y2010" = riskfeed$Def10,
+                     "Y2011" = riskfeed$Def11,
+                     "Y2012" = riskfeed$Def12,
+                     "Y2013" = riskfeed$Def13,
+                     "Y2014" = riskfeed$Def14,
+                     "Y2015" = riskfeed$Def15,
+                     "Y2016" = riskfeed$Def16,
+                     "Y2017" = riskfeed$Def17,
+                     "Y2018" = riskfeed$Def18,
+                     "Y2019" = riskfeed$Def19,
+                     "Y2020" = riskfeed$Def20,
+                     "Y2021" = riskfeed$Def21,)
+    
+    sizeRS <- switch(input$selectRS, 
+                    "Y2010" = riskfeed$Size10,
+                    "Y2011" = riskfeed$Size11,
+                    "Y2012" = riskfeed$Size12,
+                    "Y2013" = riskfeed$Size13,
+                    "Y2014" = riskfeed$Size14,
+                    "Y2015" = riskfeed$Size15,
+                    "Y2016" = riskfeed$Size16,
+                    "Y2017" = riskfeed$Size17,
+                    "Y2018" = riskfeed$Size18,
+                    "Y2019" = riskfeed$Size19,
+                    "Y2020" = riskfeed$Size20,
+                    "Y2021" = riskfeed$Size21,)
+
+    pRS <- plot_ly(riskfeed, x=AVG,y=dataRS, 
+                   text=paste(Name,sep='<br>',"Deficit: ", defRS),
+                   type='scatter', mode="markers", marker=list(size=8*sizeRS, color='lightcoral'))
+    
+    layout(pRS, yaxis=list(title="Ratio of Deficit/Requirement"), 
+           xaxis=list(title="Average Criticality Score", autorange=T, autotick=T))
+  })
+  
+  
+  
   #############################################################################################
   ###############################FINANCIAL DEFICITS PAGE#######################################
   #############################################################################################
