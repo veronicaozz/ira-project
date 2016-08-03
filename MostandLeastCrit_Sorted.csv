@@ -1,0 +1,72 @@
+CritNames,ISSCrit,CritHigh,CritLow,NonCritNames,ISSNonCrit,NoncritHigh,NoncritLow
+ISS 701: Communication Systems and System Support,ISS701,70.1%,3.4%,ISS 107: Public Affairs,ISS107,8.4%,57.1%
+ISS 401: Fire and Emergency Response Service,ISS401,66.4%,2.5%,ISS 702: Multimedia/Visual Information Processes,ISS702,10.1%,55.5%
+ISS 503: Law Enforcement Services,ISS503,62.2%,4.2%,ISS 254: Business Operations,ISS254,5.9%,52.9%
+ISS 601: Waste Water Services,ISS601,62.2%,8.4%,ISS 304: Laundry and Dry-Cleaning Services,ISS304,11.9%,50.8%
+ISS 502: Physical Security,ISS502,61.3%,3.4%,ISS 506: Conservation Services,ISS506,7.6%,50.0%
+ISS 600: Water Services,ISS600,61.3%,8.4%,ISS 404: Maintenance - Grounds,ISS404,7.6%,49.2%
+ISS 703: Information Assurance,ISS703,60.7%,1.7%,ISS 109: Equal Employment Opportunity (EEO),ISS109,12.6%,47.9%
+ISS 604: Emergency Management,ISS604,56.3%,4.2%,ISS 507: Pollution Prevention Services,ISS507,9.2%,43.7%
+ISS 901: Mobilization and Deployment Support,ISS901,53.8%,5.0%,ISS 408: Religious Support,ISS408,16.8%,42.0%
+ISS 800: Military Personnel Services,ISS800,52.9%,7.6%,"ISS 106: Snow, Ice, and Sand Removal",ISS106,15.1%,42.0%
+ISS 603: Installation Security Program Mgmt Support,ISS603,52.9%,7.6%,ISS 402: Custodial Services,ISS402,11.0%,41.5%
+ISS 500: Other Utility Services,ISS500,49.6%,3.4%,ISS 510: Pest Management,ISS510,13.6%,36.4%
+ISS 504: Electrical Services,ISS504,49.6%,5.0%,ISS 111: Internal Review,ISS111,9.3%,35.6%
+ISS 501: Heating/Cooling Services,ISS501,48.7%,4.2%,"ISS 253: Sports, Recreation, and Libraries",ISS253,22.9%,32.2%
+ISS 300: Clothing and Equipment,ISS300,47.5%,5.9%,ISS 505: Compliance Services,ISS505,19.3%,31.1%
+"ISS 252: Child, Youth, and School Services",ISS252,47.1%,8.4%,ISS 112: Installation Safety and Occupational Health,ISS112,16.1%,30.5%
+ISS 902: Command and Control,ISS902,46.2%,10.9%,ISS 104: Client Services,ISS104,12.6%,30.3%
+ISS 306: Material Support Maintenance,ISS306,44.9%,7.6%,ISS 116: Support Agreement (MOU/MOA) Mgmt,ISS116,11.9%,29.7%
+ISS 602: Anti-Terrorism Services,ISS602,44.5%,12.6%,ISS 105: Claims,ISS105,11.8%,29.4%
+ISS 900: Airfield Operations,ISS900,42.9%,9.2%,ISS 405: Installation TDA Management,ISS405,16.2%,29.1%
+ISS 903: Range Operations,ISS903,42.9%,8.4%,ISS 118: Master Planning,ISS118,11.1%,29.1%
+ISS 904: Training Land Sustainment,ISS904,42.9%,9.2%,ISS 803: Continuing Education Services,ISS803,24.4%,28.6%
+ISS 305: Food Services,ISS305,40.7%,13.6%,ISS 406: Real Estate/Real Property Administration,ISS406,13.6%,27.1%
+ISS 700: Automation,ISS700,40.5%,14.7%,ISS 202: Army Lodging Management,ISS202,21.8%,26.1%
+ISS 201: Family Housing Management,ISS201,37.3%,10.2%,ISS 121: Management Analysis,ISS121,21.2%,22.0%
+ISS 309: Supply and Storage,ISS309,34.7%,9.3%,ISS 250: Substance Abuse,ISS250,25.2%,21.8%
+ISS 301: Retail Supply,ISS301,33.9%,14.4%,ISS 307: Transportation Services - NTVs,ISS307,24.6%,21.2%
+ISS 302: Asset Management,ISS302,33.3%,14.5%,ISS 400: Facilities Engineering Services Mgmt,ISS400,19.7%,20.5%
+ISS 251: Army Community Service,ISS251,31.1%,18.5%,ISS 113: Administrative Management,ISS113,24.6%,20.3%
+ISS 905: Training Support Center,ISS905,31.1%,13.4%,ISS 303: Military Clothing and Sales,ISS303,24.6%,19.5%
+ISS 100: Installation Management,ISS100,28.6%,10.9%,ISS 102: Administration and Civil Law,ISS102,20.2%,19.3%
+ISS 200: UEPH/SEBQ/UOQ Management,ISS200,28.0%,18.6%,ISS 200: Program Budget,ISS200,28.0%,18.6%
+ISS 115: Program Budget,ISS115,27.1%,18.6%,ISS 115: UEPH/SEBQ/UOQ Management,ISS115,27.1%,18.6%
+ISS 414: Facilities Maintenance - Army Family Housing,ISS414,26.3%,16.9%,ISS 251: Army Community Service,ISS251,31.1%,18.5%
+ISS 906: Battle Command Training Center (MTC),ISS906,26.1%,13.4%,ISS 414: Facilities Maintenance - Army Family Housing,ISS414,26.3%,16.9%
+ISS 103: Substance Abuse,ISS103,25.2%,10.9%,ISS 411: Facilities Maintenance - Vertical,ISS411,22.0%,16.9%
+ISS 250: Criminal Law and Discipline,ISS250,25.2%,21.8%,ISS 308: Facilities Maintenance - Horizontal,ISS308,24.6%,16.1%
+ISS 113: Transportation Services - NTVs,ISS113,24.6%,20.3%,ISS 420: Transportation Services - Personal Property,ISS420,23.7%,16.1%
+ISS 303: Administrative Management,ISS303,24.6%,19.5%,ISS 700: Automation,ISS700,40.5%,14.7%
+ISS 307: Military Clothing and Sales,ISS307,24.6%,21.2%,ISS 302: Asset Management,ISS302,33.3%,14.5%
+ISS 308: Transportation Services - Personal Property,ISS308,24.6%,16.1%,ISS 301: Retail Supply,ISS301,33.9%,14.4%
+ISS 803: Continuing Education Services,ISS803,24.4%,28.6%,ISS 305: Food Services,ISS305,40.7%,13.6%
+ISS 420: Facilities Maintenance - Horizontal,ISS420,23.7%,16.1%,ISS 905: Training Support Center,ISS905,31.1%,13.4%
+"ISS 253: Sports, Recreation, and Libraries",ISS253,22.9%,32.2%,ISS 906: Battle Command Training Center (MTC),ISS906,26.1%,13.4%
+ISS 411: Facilities Maintenance - Vertical,ISS411,22.0%,16.9%,ISS 403: Refuse Removal,ISS403,19.5%,12.7%
+ISS 202: Army Lodging Management,ISS202,21.8%,26.1%,ISS 602: Anti-Terrorism Services,ISS602,44.5%,12.6%
+ISS 121: Management Analysis,ISS121,21.2%,22.0%,ISS 902: Installation Management,ISS902,46.2%,10.9%
+ISS 102: Administration and Civil Law,ISS102,20.2%,19.3%,ISS 100: Criminal Law and Discipline,ISS100,28.6%,10.9%
+ISS 400: Facilities Engineering Services Mgmt,ISS400,19.7%,20.5%,ISS 103: Command and Control,ISS103,25.2%,10.9%
+ISS 403: Refuse Removal,ISS403,19.5%,12.7%,ISS 201: Family Housing Management,ISS201,37.3%,10.2%
+ISS 505: Compliance Services,ISS505,19.3%,31.1%,ISS 309: Supply and Storage,ISS309,34.7%,9.3%
+"ISS 408: Snow, Ice, and Sand Removal",ISS408,16.8%,42.0%,ISS 900: Airfield Operations,ISS900,42.9%,9.2%
+ISS 405: Master Planning,ISS405,16.2%,29.1%,ISS 904: Range Operations,ISS904,42.9%,9.2%
+ISS 112: Installation Safety and Occupational Health,ISS112,16.1%,30.5%,"ISS 601: Child, Youth, and School Services",ISS601,62.2%,8.4%
+ISS 106: Religious Support,ISS106,15.1%,42.0%,ISS 600: Physical Security,ISS600,61.3%,8.4%
+ISS 406: Pest Management,ISS406,13.6%,27.1%,ISS 252: Law Enforcement Services,ISS252,47.1%,8.4%
+ISS 510: Real Estate/Real Property Administration,ISS510,13.6%,36.4%,ISS 903: Training Land Sustainment,ISS903,42.9%,8.4%
+ISS 104: Equal Employment Opportunity (EEO),ISS104,12.6%,30.3%,ISS 306: Material Support Maintenance,ISS306,44.9%,7.6%
+ISS 109: Client Services,ISS109,12.6%,47.9%,ISS 800: Military Personnel Services,ISS800,52.9%,7.6%
+ISS 116: Laundry and Dry-Cleaning Services,ISS116,11.9%,29.7%,ISS 603: Installation Security Program Mgmt Support,ISS603,52.9%,7.6%
+ISS 304: Support Agreement (MOU/MOA) Mgmt,ISS304,11.9%,50.8%,ISS 300: Clothing and Equipment,ISS300,47.5%,5.9%
+ISS 105: Claims,ISS105,11.8%,29.4%,ISS 901: Other Utility Services,ISS901,53.8%,5.0%
+ISS 118: Installation TDA Management,ISS118,11.1%,29.1%,ISS 504: Mobilization and Deployment Support,ISS504,49.6%,5.0%
+ISS 402: Custodial Services,ISS402,11.0%,41.5%,ISS 503: Heating/Cooling Services,ISS503,62.2%,4.2%
+ISS 702: Multimedia/Visual Information Processes,ISS702,10.1%,55.5%,ISS 604: Waste Water Services,ISS604,56.3%,4.2%
+ISS 111: Internal Review,ISS111,9.3%,35.6%,ISS 501: Emergency Management,ISS501,48.7%,4.2%
+ISS 507: Pollution Prevention Services,ISS507,9.2%,43.7%,ISS 701: Communication Systems and System Support,ISS701,70.1%,3.4%
+ISS 107: Public Affairs,ISS107,8.4%,57.1%,ISS 502: Electrical Services,ISS502,61.3%,3.4%
+ISS 404: Conservation Services,ISS404,7.6%,49.2%,ISS 500: Water Services,ISS500,49.6%,3.4%
+ISS 506: Maintenance - Grounds,ISS506,7.6%,50.0%,ISS 401: Fire and Emergency Response Service,ISS401,66.4%,2.5%
+ISS 254: Business Operations,ISS254,5.9%,52.9%,ISS 703: Information Assurance,ISS703,60.7%,1.7%

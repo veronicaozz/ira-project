@@ -1,0 +1,72 @@
+ISDI,ISS,ISSNames,AVGBragg,AVGCampbell,AVGEustis,AVGHood
+1,100,Installation Management,7.39,5.91,6.25,6.62
+2,102,Administration and Civil Law,6.35,6.26,6.00,6.28
+3,103,Criminal Law and Discipline,6.57,6.48,6.25,6.92
+4,104,Client Services,4.96,5.39,5.58,5.26
+5,105,Claims,5.39,5.22,5.50,5.56
+6,106,Religious Support,5.35,4.52,5.50,4.77
+7,107,Public Affairs,3.65,4.57,3.75,4.21
+8,109,Equal Employment Opportunity (EEO),4.57,4.57,3.75,5.16
+9,111,Internal Review,5.09,4.45,5.08,5.16
+10,112,Installation Safety and Occupational Health,5.30,5.18,5.67,5.28
+11,115,Program Budget,6.61,5.86,5.08,6.75
+12,116,Support Agreement (MOU/MOA) Mgmt,5.26,5.36,5.75,5.16
+13,118,Installation TDA Management,5.35,5.19,5.17,5.30
+14,121,Management Analysis,6.17,6.27,5.08,5.82
+15,113,Administrative Management,6.26,5.45,5.08,5.92
+16,250,Substance Abuse,6.52,5.13,6.33,6.54
+17,800,Military Personnel Services,7.30,7.22,7.67,7.82
+18,803,Continuing Education Services,5.83,5.43,5.58,6.34
+19,202,Army Lodging Management,5.83,6.13,5.17,5.75
+20,251,Army Community Service,6.35,6.13,5.92,6.43
+21,252,"Child, Youth, and School Services",7.65,7.09,8.00,7.46
+22,253,"Sports, Recreation, and Libraries",6.91,5.45,5.25,5.23
+23,254,Business Operations,5.26,4.22,4.50,3.74
+24,201,Family Housing Management,7.30,6.35,7.17,7.22
+25,414,Facilities Maintenance - Army Family Housing,6.78,6.48,6.17,6.35
+26,411,Facilities Maintenance - Vertical,6.78,5.48,6.33,6.30
+27,420,Facilities Maintenance - Horizontal,6.78,5.43,6.58,6.28
+28,200,UEPH/SEBQ/UOQ Management,6.52,5.57,6.25,6.15
+29,400,Facilities Engineering Services Mgmt,6.43,5.26,6.25,5.88
+30,402,Custodial Services,5.65,4.48,4.00,4.38
+31,403,Refuse Removal,6.91,5.87,5.42,6.03
+32,404,Maintenance - Grounds,4.91,4.35,4.58,4.15
+33,405,Master Planning,5.65,5.09,5.33,5.53
+34,406,Real Estate/Real Property Administration,5.83,5.22,5.50,5.52
+35,408,"Snow, Ice, and Sand Removal",4.00,7.00,4.50,4.34
+36,500,Electrical Services,7.65,7.87,7.58,7.46
+37,501,Heating/Cooling Services,7.35,7.57,7.33,7.67
+38,502,Water Services,8.13,7.96,7.83,8.15
+39,503,Waste Water Services,8.48,7.57,7.83,8.00
+40,504,Other Utility Services,8.04,7.70,6.92,7.38
+41,505,Compliance Services,5.78,5.65,5.67,5.36
+42,506,Conservation Services,4.96,4.43,4.42,4.17
+43,507,Pollution Prevention Services,5.17,4.65,4.50,4.67
+44,510,Pest Management,5.18,5.30,5.42,5.10
+45,401,Fire and Emergency Response Service,8.74,8.00,8.75,8.28
+46,600,Physical Security,8.48,7.83,9.00,7.69
+47,601,Law Enforcement Services,8.65,7.78,9.00,7.66
+48,602,Anti-Terrorism Services,7.96,6.65,7.00,7.13
+49,603,Installation Security Program Mgmt Support,8.00,7.35,7.42,7.48
+50,604,Emergency Management,8.61,7.13,8.17,7.80
+51,702,Multimedia/Visual Information Processes,4.74,4.26,4.67,4.23
+52,900,Airfield Operations,8.70,6.83,6.58,7.25
+53,901,Mobilization and Deployment Support,8.30,7.52,7.50,7.57
+54,902,Command and Control,7.78,7.17,6.25,7.36
+55,903,Training Land Sustainment,7.57,7.22,6.25,7.16
+56,904,Range Operations,7.91,7.57,6.08,7.18
+57,905,Training Support Center,7.35,6.78,5.75,6.56
+58,906,Battle Command Training Center (MTC),6.70,6.30,5.50,6.75
+59,701,Communication Systems and System Support,9.04,8.52,8.73,8.08
+60,703,Information Assurance,8.83,7.39,8.27,7.82
+61,700,Automation,7.17,6.74,8.18,6.75
+62,300,Clothing and Equipment,7.52,7.57,6.33,7.85
+63,301,Retail Supply,7.39,6.04,5.50,6.70
+64,302,Asset Management,7.00,6.17,6.42,6.75
+65,303,Military Clothing and Sales,6.74,5.52,5.83,6.30
+66,304,Laundry and Dry-Cleaning Services,4.48,4.48,4.17,4.45
+67,305,Food Services,6.70,6.57,7.33,7.33
+68,306,Material Support Maintenance,7.65,7.48,6.00,7.63
+69,307,Transportation Services - NTVs,6.65,6.48,5.42,6.13
+70,308,Transportation Services - Personal Property,6.57,6.35,6.17,6.17
+71,309,Supply and Storage,6.96,6.91,5.75,7.15
