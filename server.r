@@ -1,13 +1,24 @@
 library(shiny)
 library(plotly)
 library(ggplot2)
+library(RColorBrewer)
 #setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
-isslevels = read.csv("issforcritlevels.csv", stringsAsFactor=FALSE)
+isslevels = read.csv("issforcritlevels2.csv", stringsAsFactor=FALSE)
 riskfeed = read.csv("riskfeed.csv")
+sorted = read.csv ("MostandLeastCrit_Sorted.csv")
+comments = read.csv("soldiercomments.csv", stringsAsFactors=FALSE, allowEscapes=TRUE)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
+  
+  ##HOME PAGE
+  output$TotalFunds <- renderValueBox({
+    valueBox(
+      paste("$70,377,028,000"), "Total ISS Funding Included in Analysis",  icon = icon("fa fa-usd"),
+      color = "light-blue"
+    )
+  })
 
   #############################################################################################
   ###############################RISK PAGE#######################################
@@ -56,11 +67,14 @@ shinyServer(function(input, output, session) {
                     "Y2020" = riskfeed$Size20,
                     "Y2021" = riskfeed$Size21,)
 
+    color <- ifelse(riskfeed$AVG > 7.34, 'red', ifelse(riskfeed$AVG > 6.27, 'darkorange', 
+              ifelse(riskfeed$AVG > 5.20, 'gold', 'green')))
+    
     pRS <- plot_ly(riskfeed, x=AVG,y=dataRS, 
                    text=paste(Name,sep='<br>',"Deficit: ", defRS),
-                   type='scatter', mode="markers", marker=list(size=8*sizeRS, color='lightcoral'))
+                   type='scatter', mode="markers", marker=list(size=9*sizeRS, color=color)) 
     
-    layout(pRS, yaxis=list(title="Ratio of Deficit/Requirement"), 
+    layout(pRS, yaxis=list(title="Ratio of Deficit/Requirement (%)"), 
            xaxis=list(title="Average Criticality Score", autorange=T, autotick=T))
   })
   
@@ -74,33 +88,33 @@ shinyServer(function(input, output, session) {
   output$ISSPlotF <- renderPlotly({
     
     dataF <- switch(input$selectF, 
-                   "ISS1" = isslevels$ISS1[3:14],
-                   "ISS2" = isslevels$ISS2[3:14],
-                   "ISS3" = isslevels$ISS3[3:14],
-                   "ISS4" = isslevels$ISS4[3:14],
-                   "ISS5" = isslevels$ISS5[3:14],
-                   "ISS6" = isslevels$ISS6[3:14],
-                   "ISS7" = isslevels$ISS7[3:14],
-                   "ISS8" = isslevels$ISS8[3:14],
-                   "ISS9" = isslevels$ISS9[3:14],
-                   "ISS10" = isslevels$ISS10[3:14],
-                   "ISS11" = isslevels$ISS11[3:14],
-                   "ISS12" = isslevels$ISS12[3:14],
-                   "ISS13" = isslevels$ISS13[3:14],
-                   "ISS14" = isslevels$ISS14[3:14],
-                   "ISS15" = isslevels$ISS15[3:14],
-                   "ISS16" = isslevels$ISS16[3:14],
-                   "ISS17" = isslevels$ISS17[3:14],
-                   "ISS18" = isslevels$ISS18[3:14],
-                   "ISS19" = isslevels$ISS19[3:14],
-                   "ISS20" = isslevels$ISS20[3:14],
-                   "ISS21" = isslevels$ISS21[3:14],
-                   "ISS22" = isslevels$ISS22[3:14],
-                   "ISS23" = isslevels$ISS23[3:14],
-                   "ISS24" = isslevels$ISS24[3:14],
-                   "ISS25" = isslevels$ISS25[3:14],
-                   "ISS26" = isslevels$ISS26[3:14],
-                   "ISS27" = isslevels$ISS27[3:14],)
+                    "ISS100" = isslevels$ISS100[3:14],
+                    "ISS102" = isslevels$ISS102[3:14],
+                    "ISS103" = isslevels$ISS103[3:14],
+                    "ISS104" = isslevels$ISS104[3:14],
+                    "ISS105" = isslevels$ISS105[3:14],
+                    "ISS106" = isslevels$ISS106[3:14],
+                    "ISS107" = isslevels$ISS107[3:14],
+                    "ISS109" = isslevels$ISS109[3:14],
+                    "ISS111" = isslevels$ISS111[3:14],
+                    "ISS112" = isslevels$ISS112[3:14],
+                    "ISS115" = isslevels$ISS115[3:14],
+                    "ISS116" = isslevels$ISS116[3:14],
+                    "ISS118" = isslevels$ISS118[3:14],
+                    "ISS121" = isslevels$ISS121[3:14],
+                    "ISS113" = isslevels$ISS113[3:14],
+                    "ISS250" = isslevels$ISS250[3:14],
+                    "ISS800" = isslevels$ISS800[3:14],
+                    "ISS803" = isslevels$ISS803[3:14],
+                    "ISS202" = isslevels$ISS202[3:14],
+                    "ISS251" = isslevels$ISS251[3:14],
+                    "ISS252" = isslevels$ISS252[3:14],
+                    "ISS253" = isslevels$ISS253[3:14],
+                    "ISS254" = isslevels$ISS254[3:14],
+                    "ISS201" = isslevels$ISS201[3:14],
+                    "ISS414" = isslevels$ISS414[3:14],
+                    "ISS411" = isslevels$ISS411[3:14],
+                    "ISS420" = isslevels$ISS420[3:14],)
 
     
     pF <- plot_ly(isslevels, x=isslevels$Button[3:14],y=dataF,
@@ -116,33 +130,33 @@ shinyServer(function(input, output, session) {
   
   output$Def16Box <- renderValueBox({
     dataF2 <- switch(input$selectF, 
-                    "ISS1" = isslevels$ISS1[15],
-                    "ISS2" = isslevels$ISS2[15],
-                    "ISS3" = isslevels$ISS3[15],
-                    "ISS4" = isslevels$ISS4[15],
-                    "ISS5" = isslevels$ISS5[15],
-                    "ISS6" = isslevels$ISS6[15],
-                    "ISS7" = isslevels$ISS7[15],
-                    "ISS8" = isslevels$ISS8[15],
-                    "ISS9" = isslevels$ISS9[15],
-                    "ISS10" = isslevels$ISS10[15],
-                    "ISS11" = isslevels$ISS11[15],
-                    "ISS12" = isslevels$ISS12[15],
-                    "ISS13" = isslevels$ISS13[15],
-                    "ISS14" = isslevels$ISS14[15],
-                    "ISS15" = isslevels$ISS15[15],
-                    "ISS16" = isslevels$ISS16[15],
-                    "ISS17" = isslevels$ISS17[15],
-                    "ISS18" = isslevels$ISS18[15],
-                    "ISS19" = isslevels$ISS19[15],
-                    "ISS20" = isslevels$ISS20[15],
-                    "ISS21" = isslevels$ISS21[15],
-                    "ISS22" = isslevels$ISS22[15],
-                    "ISS23" = isslevels$ISS23[15],
-                    "ISS24" = isslevels$ISS24[15],
-                    "ISS25" = isslevels$ISS25[15],
-                    "ISS26" = isslevels$ISS26[15],
-                    "ISS27" = isslevels$ISS27[15],)
+                     "ISS100" = isslevels$ISS100[15],
+                     "ISS102" = isslevels$ISS102[15],
+                     "ISS103" = isslevels$ISS103[15],
+                     "ISS104" = isslevels$ISS104[15],
+                     "ISS105" = isslevels$ISS105[15],
+                     "ISS106" = isslevels$ISS106[15],
+                     "ISS107" = isslevels$ISS107[15],
+                     "ISS109" = isslevels$ISS109[15],
+                     "ISS111" = isslevels$ISS111[15],
+                     "ISS112" = isslevels$ISS112[15],
+                     "ISS115" = isslevels$ISS115[15],
+                     "ISS116" = isslevels$ISS116[15],
+                     "ISS118" = isslevels$ISS118[15],
+                     "ISS121" = isslevels$ISS121[15],
+                     "ISS113" = isslevels$ISS113[15],
+                     "ISS250" = isslevels$ISS250[15],
+                     "ISS800" = isslevels$ISS800[15],
+                     "ISS803" = isslevels$ISS803[15],
+                     "ISS202" = isslevels$ISS202[15],
+                     "ISS251" = isslevels$ISS251[15],
+                     "ISS252" = isslevels$ISS252[15],
+                     "ISS253" = isslevels$ISS253[15],
+                     "ISS254" = isslevels$ISS254[15],
+                     "ISS201" = isslevels$ISS201[15],
+                     "ISS414" = isslevels$ISS414[15],
+                     "ISS411" = isslevels$ISS411[15],
+                     "ISS420" = isslevels$ISS420[15],)
     valueBox(
       paste(dataF2), "Total Deficit (FY10-FY16)", icon = icon("fa fa-usd"),
       color = "teal"
@@ -151,33 +165,33 @@ shinyServer(function(input, output, session) {
   
   output$Pred21Box <- renderValueBox({
     dataF3 <- switch(input$selectF, 
-                     "ISS1" = isslevels$ISS1[16],
-                     "ISS2" = isslevels$ISS2[16],
-                     "ISS3" = isslevels$ISS3[16],
-                     "ISS4" = isslevels$ISS4[16],
-                     "ISS5" = isslevels$ISS5[16],
-                     "ISS6" = isslevels$ISS6[16],
-                     "ISS7" = isslevels$ISS7[16],
-                     "ISS8" = isslevels$ISS8[16],
-                     "ISS9" = isslevels$ISS9[16],
-                     "ISS10" = isslevels$ISS10[16],
-                     "ISS11" = isslevels$ISS11[16],
-                     "ISS12" = isslevels$ISS12[16],
-                     "ISS13" = isslevels$ISS13[16],
-                     "ISS14" = isslevels$ISS14[16],
-                     "ISS15" = isslevels$ISS15[16],
-                     "ISS16" = isslevels$ISS16[16],
-                     "ISS17" = isslevels$ISS17[16],
-                     "ISS18" = isslevels$ISS18[16],
-                     "ISS19" = isslevels$ISS19[16],
-                     "ISS20" = isslevels$ISS20[16],
-                     "ISS21" = isslevels$ISS21[16],
-                     "ISS22" = isslevels$ISS22[16],
-                     "ISS23" = isslevels$ISS23[16],
-                     "ISS24" = isslevels$ISS24[16],
-                     "ISS25" = isslevels$ISS25[16],
-                     "ISS26" = isslevels$ISS26[16],
-                     "ISS27" = isslevels$ISS27[16],)
+                     "ISS100" = isslevels$ISS100[16],
+                     "ISS102" = isslevels$ISS102[16],
+                     "ISS103" = isslevels$ISS103[16],
+                     "ISS104" = isslevels$ISS104[16],
+                     "ISS105" = isslevels$ISS105[16],
+                     "ISS106" = isslevels$ISS106[16],
+                     "ISS107" = isslevels$ISS107[16],
+                     "ISS109" = isslevels$ISS109[16],
+                     "ISS111" = isslevels$ISS111[16],
+                     "ISS112" = isslevels$ISS112[16],
+                     "ISS115" = isslevels$ISS115[16],
+                     "ISS116" = isslevels$ISS116[16],
+                     "ISS118" = isslevels$ISS118[16],
+                     "ISS121" = isslevels$ISS121[16],
+                     "ISS113" = isslevels$ISS113[16],
+                     "ISS250" = isslevels$ISS250[16],
+                     "ISS800" = isslevels$ISS800[16],
+                     "ISS803" = isslevels$ISS803[16],
+                     "ISS202" = isslevels$ISS202[16],
+                     "ISS251" = isslevels$ISS251[16],
+                     "ISS252" = isslevels$ISS252[16],
+                     "ISS253" = isslevels$ISS253[16],
+                     "ISS254" = isslevels$ISS254[16],
+                     "ISS201" = isslevels$ISS201[16],
+                     "ISS414" = isslevels$ISS414[16],
+                     "ISS411" = isslevels$ISS411[16],
+                     "ISS420" = isslevels$ISS420[16],)
     
     valueBox(
       paste(dataF3), "Predicted Deficit (FY17-F21)", icon = icon("fa fa-usd"),
@@ -186,7 +200,7 @@ shinyServer(function(input, output, session) {
   })
   
   #############################################################################################
-    #COMPARISON - FINANcIAL DEFICITS
+    #COMPARISON - FINANCIAL DEFICITS
   output$ISSLineF <- renderPlotly({
     
     #process data to only what we want
@@ -211,7 +225,38 @@ shinyServer(function(input, output, session) {
     }
 
     #only change to your original was to remove some weird border from the legend
-    layout(p, yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T),
+    layout(p, title = "Cumulative ISS Deficit",
+           yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T),
+           legend=list(bordercolor="#FFFFFF"))
+    
+  })
+
+  output$ISSLineF2 <- renderPlotly({
+    
+    #process data to only what we want
+    df <- isslevels[c(3:16),]
+    #add dummy column
+    df$dummy <- NA
+    
+    #plot dummy column - this is so you will always have something to start with
+    p <- plot_ly(df, type='line', y=dummy, x=Button, showlegend = FALSE)
+    
+    #####plot additional traces based on selections
+    #capture selections
+    selected <<- input$checkboxF
+    
+    #only plot new stuff if something is selected
+    #add trace for each selection - note the eval(parse(...)) thing and evaluate=TRUE to get this to work
+    #also, set legend entries for new series
+    if(length(selected) > 0){
+      for(i in 1:length(selected)){
+        p <- add_trace(p, y=eval(parse(text=selected[i])), x=Button, evaluate=TRUE, name=selected[i])
+      }
+    }
+    
+    #only change to your original was to remove some weird border from the legend
+    layout(p, title = "Annual ISS Deficit",
+           yaxis=list(title="Deficit in $"), xaxis=list(title="Year", autorange=T, autotick=T),
            legend=list(bordercolor="#FFFFFF"))
     
   })
@@ -230,33 +275,33 @@ shinyServer(function(input, output, session) {
   output$ISSPlot <- renderPlotly({
   
     data <- switch(input$selectC, 
-                   "ISS1" = isshist$ISS1,
-                   "ISS2" = isshist$ISS2,
-                   "ISS3" = isshist$ISS3,
-                   "ISS4" = isshist$ISS4,
-                   "ISS5" = isshist$ISS5,
-                   "ISS6" = isshist$ISS6,
-                   "ISS7" = isshist$ISS7,
-                   "ISS8" = isshist$ISS8,
-                   "ISS9" = isshist$ISS9,
-                   "ISS10" = isshist$ISS10,
-                   "ISS11" = isshist$ISS11,
-                   "ISS12" = isshist$ISS12,
-                   "ISS13" = isshist$ISS13,
-                   "ISS14" = isshist$ISS14,
-                   "ISS15" = isshist$ISS15,
-                   "ISS16" = isshist$ISS16,
-                   "ISS17" = isshist$ISS17,
-                   "ISS18" = isshist$ISS18,
-                   "ISS19" = isshist$ISS19,
-                   "ISS20" = isshist$ISS20,
-                   "ISS21" = isshist$ISS21,
-                   "ISS22" = isshist$ISS22,
-                   "ISS23" = isshist$ISS23,
-                   "ISS24" = isshist$ISS24,
-                   "ISS25" = isshist$ISS25,
-                   "ISS26" = isshist$ISS26,
-                   "ISS27" = isshist$ISS27,)
+                   "ISS100" = isshist$ISS100,
+                   "ISS102" = isshist$ISS102,
+                   "ISS103" = isshist$ISS103,
+                   "ISS104" = isshist$ISS104,
+                   "ISS105" = isshist$ISS105,
+                   "ISS106" = isshist$ISS106,
+                   "ISS107" = isshist$ISS107,
+                   "ISS109" = isshist$ISS109,
+                   "ISS111" = isshist$ISS111,
+                   "ISS112" = isshist$ISS112,
+                   "ISS115" = isshist$ISS115,
+                   "ISS116" = isshist$ISS116,
+                   "ISS118" = isshist$ISS118,
+                   "ISS121" = isshist$ISS121,
+                   "ISS113" = isshist$ISS113,
+                   "ISS250" = isshist$ISS250,
+                   "ISS800" = isshist$ISS800,
+                   "ISS803" = isshist$ISS803,
+                   "ISS202" = isshist$ISS202,
+                   "ISS251" = isshist$ISS251,
+                   "ISS252" = isshist$ISS252,
+                   "ISS253" = isshist$ISS253,
+                   "ISS254" = isshist$ISS254,
+                   "ISS201" = isshist$ISS201,
+                   "ISS414" = isshist$ISS414,
+                   "ISS411" = isshist$ISS411,
+                   "ISS420" = isshist$ISS420,)
     
     
     minx<- min(data)
@@ -279,33 +324,33 @@ shinyServer(function(input, output, session) {
   
   output$HighCritBox <- renderValueBox({
     data2 <- switch(input$selectC, 
-                   "ISS1" = isslevels$ISS1[1],
-                   "ISS2" = isslevels$ISS2[1],
-                   "ISS3" = isslevels$ISS3[1],
-                   "ISS4" = isslevels$ISS4[1],
-                   "ISS5" = isslevels$ISS5[1],
-                   "ISS6" = isslevels$ISS6[1],
-                   "ISS7" = isslevels$ISS7[1],
-                   "ISS8" = isslevels$ISS8[1],
-                   "ISS9" = isslevels$ISS9[1],
-                   "ISS10" = isslevels$ISS10[1],
-                   "ISS11" = isslevels$ISS11[1],
-                   "ISS12" = isslevels$ISS12[1],
-                   "ISS13" = isslevels$ISS13[1],
-                   "ISS14" = isslevels$ISS14[1],
-                   "ISS15" = isslevels$ISS15[1],
-                   "ISS16" = isslevels$ISS16[1],
-                   "ISS17" = isslevels$ISS17[1],
-                   "ISS18" = isslevels$ISS18[1],
-                   "ISS19" = isslevels$ISS19[1],
-                   "ISS20" = isslevels$ISS20[1],
-                   "ISS21" = isslevels$ISS21[1],
-                   "ISS22" = isslevels$ISS22[1],
-                   "ISS23" = isslevels$ISS23[1],
-                   "ISS24" = isslevels$ISS24[1],
-                   "ISS25" = isslevels$ISS25[1],
-                   "ISS26" = isslevels$ISS26[1],
-                   "ISS27" = isslevels$ISS27[1],)
+                   "ISS100" = isslevels$ISS100[1],
+                   "ISS102" = isslevels$ISS102[1],
+                   "ISS103" = isslevels$ISS103[1],
+                   "ISS104" = isslevels$ISS104[1],
+                   "ISS105" = isslevels$ISS105[1],
+                   "ISS106" = isslevels$ISS106[1],
+                   "ISS107" = isslevels$ISS107[1],
+                   "ISS109" = isslevels$ISS109[1],
+                   "ISS111" = isslevels$ISS111[1],
+                   "ISS112" = isslevels$ISS112[1],
+                   "ISS115" = isslevels$ISS115[1],
+                   "ISS116" = isslevels$ISS116[1],
+                   "ISS118" = isslevels$ISS118[1],
+                   "ISS121" = isslevels$ISS121[1],
+                   "ISS113" = isslevels$ISS113[1],
+                   "ISS250" = isslevels$ISS250[1],
+                   "ISS800" = isslevels$ISS800[1],
+                   "ISS803" = isslevels$ISS803[1],
+                   "ISS202" = isslevels$ISS202[1],
+                   "ISS251" = isslevels$ISS251[1],
+                   "ISS252" = isslevels$ISS252[1],
+                   "ISS253" = isslevels$ISS253[1],
+                   "ISS254" = isslevels$ISS254[1],
+                   "ISS201" = isslevels$ISS201[1],
+                   "ISS414" = isslevels$ISS414[1],
+                   "ISS411" = isslevels$ISS411[1],
+                   "ISS420" = isslevels$ISS420[1],)
     valueBox(
       paste(data2), "Critical", icon = icon("fa fa-arrow-up"),
       color = "red"
@@ -313,39 +358,158 @@ shinyServer(function(input, output, session) {
   })
   output$LowCritBox <- renderValueBox({
     data3 <- switch(input$selectC, 
-                    "ISS1" = isslevels$ISS1[2],
-                    "ISS2" = isslevels$ISS2[2],
-                    "ISS3" = isslevels$ISS3[2],
-                    "ISS4" = isslevels$ISS4[2],
-                    "ISS5" = isslevels$ISS5[2],
-                    "ISS6" = isslevels$ISS6[2],
-                    "ISS7" = isslevels$ISS7[2],
-                    "ISS8" = isslevels$ISS8[2],
-                    "ISS9" = isslevels$ISS9[2],
-                    "ISS10" = isslevels$ISS10[2],
-                    "ISS11" = isslevels$ISS11[2],
-                    "ISS12" = isslevels$ISS12[2],
-                    "ISS13" = isslevels$ISS13[2],
-                    "ISS14" = isslevels$ISS14[2],
-                    "ISS15" = isslevels$ISS15[2],
-                    "ISS16" = isslevels$ISS16[2],
-                    "ISS17" = isslevels$ISS17[2],
-                    "ISS18" = isslevels$ISS18[2],
-                    "ISS19" = isslevels$ISS19[2],
-                    "ISS20" = isslevels$ISS20[2],
-                    "ISS21" = isslevels$ISS21[2],
-                    "ISS22" = isslevels$ISS22[2],
-                    "ISS23" = isslevels$ISS23[2],
-                    "ISS24" = isslevels$ISS24[2],
-                    "ISS25" = isslevels$ISS25[2],
-                    "ISS26" = isslevels$ISS26[2],
-                    "ISS27" = isslevels$ISS27[2],)
+                    "ISS100" = isslevels$ISS100[2],
+                    "ISS102" = isslevels$ISS102[2],
+                    "ISS103" = isslevels$ISS103[2],
+                    "ISS104" = isslevels$ISS104[2],
+                    "ISS105" = isslevels$ISS105[2],
+                    "ISS106" = isslevels$ISS106[2],
+                    "ISS107" = isslevels$ISS107[2],
+                    "ISS109" = isslevels$ISS109[2],
+                    "ISS111" = isslevels$ISS111[2],
+                    "ISS112" = isslevels$ISS112[2],
+                    "ISS115" = isslevels$ISS115[2],
+                    "ISS116" = isslevels$ISS116[2],
+                    "ISS118" = isslevels$ISS118[2],
+                    "ISS121" = isslevels$ISS121[2],
+                    "ISS113" = isslevels$ISS113[2],
+                    "ISS250" = isslevels$ISS250[2],
+                    "ISS800" = isslevels$ISS800[2],
+                    "ISS803" = isslevels$ISS803[2],
+                    "ISS202" = isslevels$ISS202[2],
+                    "ISS251" = isslevels$ISS251[2],
+                    "ISS252" = isslevels$ISS252[2],
+                    "ISS253" = isslevels$ISS253[2],
+                    "ISS254" = isslevels$ISS254[2],
+                    "ISS201" = isslevels$ISS201[2],
+                    "ISS414" = isslevels$ISS414[2],
+                    "ISS411" = isslevels$ISS411[2],
+                    "ISS420" = isslevels$ISS420[2],)
     valueBox(
       paste(data3), "Non-Critical", icon = icon("fa fa-arrow-down"),
       color = "green"
     )
   })
   
-})
+    output$tabcomment <- renderText({
+      input$tabcomment
+    })
 
+    output$Current <- renderText({
+      input$selectC
+    })
+
+  output$Positives <- renderText({
+    pos_data <- switch(input$selectC, 
+                   "ISS100" = comments$ISS100[1],
+                   "ISS102" = comments$ISS102[1],
+                   "ISS103" = comments$ISS103[1],
+                   "ISS104" = comments$ISS104[1],
+                   "ISS105" = comments$ISS105[1],
+                   "ISS106" = comments$ISS106[1],
+                   "ISS107" = comments$ISS107[1],
+                   "ISS109" = comments$ISS109[1],
+                   "ISS111" = comments$ISS111[1],
+                   "ISS112" = comments$ISS112[1],
+                   "ISS115" = comments$ISS115[1],
+                   "ISS116" = comments$ISS116[1],
+                   "ISS118" = comments$ISS118[1],
+                   "ISS121" = comments$ISS121[1],
+                   "ISS113" = comments$ISS113[1],
+                   "ISS250" = comments$ISS250[1],
+                   "ISS800" = comments$ISS800[1],
+                   "ISS803" = comments$ISS803[1],
+                   "ISS202" = comments$ISS202[1],
+                   "ISS251" = comments$ISS251[1],
+                   "ISS252" = comments$ISS252[1],
+                   "ISS253" = comments$ISS253[1],
+                   "ISS254" = comments$ISS254[1],
+                   "ISS201" = comments$ISS201[1],
+                   "ISS414" = comments$ISS414[1],
+                   "ISS411" = comments$ISS411[1],
+                   "ISS420" = comments$ISS420[1],)
+    pos_data
+  })
+
+  output$Negatives <- renderText({
+    neg_data <- switch(input$selectC, 
+                       "ISS100" = comments$ISS100[2],
+                       "ISS102" = comments$ISS102[2],
+                       "ISS103" = comments$ISS103[2],
+                       "ISS104" = comments$ISS104[2],
+                       "ISS105" = comments$ISS105[2],
+                       "ISS106" = comments$ISS106[2],
+                       "ISS107" = comments$ISS107[2],
+                       "ISS109" = comments$ISS109[2],
+                       "ISS111" = comments$ISS111[2],
+                       "ISS112" = comments$ISS112[2],
+                       "ISS115" = comments$ISS115[2],
+                       "ISS116" = comments$ISS116[2],
+                       "ISS118" = comments$ISS118[2],
+                       "ISS121" = comments$ISS121[2],
+                       "ISS113" = comments$ISS113[2],
+                       "ISS250" = comments$ISS250[2],
+                       "ISS800" = comments$ISS800[2],
+                       "ISS803" = comments$ISS803[2],
+                       "ISS202" = comments$ISS202[2],
+                       "ISS251" = comments$ISS251[2],
+                       "ISS252" = comments$ISS252[2],
+                       "ISS253" = comments$ISS253[2],
+                       "ISS254" = comments$ISS254[2],
+                       "ISS201" = comments$ISS201[2],
+                       "ISS414" = comments$ISS414[2],
+                       "ISS411" = comments$ISS411[2],
+                       "ISS420" = comments$ISS420[2],)
+    neg_data
+  })
+
+##########################################################################
+  ## Static Criticality listings
+  output$MostandLeast <- renderPlotly ({
+    
+  #add dummy column
+  df2 <- sorted[c(2:72),]
+  df2$dummy2 <- NA
+  
+  #x axis
+  xdataML <- switch(input$radioML, 
+                    "Critical to Readiness"  = sorted$ISSCrit,
+                    "Non-Critical to Readiness" = sorted$ISSNonCrit,)
+  
+  #plot dummy column - this is so you will always have something to start with
+  s <- plot_ly(df2, type='bar', y=dummy2, x=xdataML, showlegend = FALSE)
+  
+  #y axis
+  ydataML <- switch(input$radioML, 
+                "Critical to Readiness" = sorted$CritHigh,
+                 "Non-Critical to Readiness" = sorted$NoncritLow,)
+  
+  serviceML <- switch(input$radioML,
+                      "Critical to Readiness" = sorted$CritNames,
+                       "Non-Critical to Readiness"= sorted$NonCritNames)
+  namesML <- switch(input$radioML,
+                     "Critical to Readiness" = "Critical to Readiness",
+                     "Non-Critical to Readiness" = "Non-Critical to Readiness",)
+
+  color1 <- ifelse(input$radioML == 'Critical to Readiness', 'red2', 'seagreen4')
+  s <- add_trace(s, x=xdataML, y=ydataML, name=namesML, text=paste0(serviceML), type="bar",
+                 marker=list(color=toRGB(color1)))
+  
+  ydataML2 <- switch(input$radioML, 
+               "Critical to Readiness"  = sorted$CritLow,
+               "Non-Critical to Readiness" = sorted$NoncritHigh,)
+
+  namesML2 <- switch(input$radioML,
+                  "Non-Critical to Readiness" = "Critical to Readiness",
+                  "Critical to Readiness" = "Non-Critical to Readiness",)
+
+  color2 <- ifelse(input$radioML == 'Critical to Readiness', 'seagreen4', 'red2')
+  s <- add_trace(s, x=xdataML, y=ydataML2, name=namesML2, text=paste0(serviceML), type="bar",
+                 marker=list(color=toRGB(color2)))
+
+
+  layout(s, yaxis=list(title="Percentage of (Non-)Critical Responses (%)"), xaxis=list(title="Installation Services", showticklabels=FALSE),
+       legend=list(bordercolor="#FFFFFF"))
+  })
+})
 #############################################################################################
