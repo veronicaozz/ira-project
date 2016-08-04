@@ -104,11 +104,12 @@ body <- dashboardBody(
                        style="display: block; margin-left: auto; margin-right: auto;")
               ))),
       
+#####################################################################################
       tabItem(tabName = "risk",
               navbarPage("Risk Assessment",
                 tabPanel("All Services",
               h3("Risk Assessment by Fiscal Year"),
-              fluidRow(column(width = 4, box(selectInput
+              fluidRow(column(5, fluidRow(column(width=5, box(selectInput
                           ("selectRS", label = h4("Select Fiscal Year"), 
                             choices = list(
                               "2010" = "Y2010",
@@ -123,12 +124,42 @@ body <- dashboardBody(
                               "2019" = "Y2019",
                               "2020" = "Y2020",
                               "2021" = "Y2021"),
-                            selected = "Y2010"), width = NULL),
+                            selected = "Y2010"), status='warning', width = NULL)),
+                          column(7, box(selectInput("findISSrisk", label = h4("Find an ISS"), 
+                                  choices = list(
+                                    "100: Installation Management" = "ISS100",
+                                    "102: Administration and Civil Law" = "ISS102",
+                                    "103: Criminal Law and Discipline" = "ISS103",
+                                    "104: Client Services" = "ISS104",
+                                    "105: Claims" = "ISS105",
+                                    "106: Religious Support" = "ISS106",
+                                    "107: Public Affairs" = "ISS107",
+                                    "109: Equal Employment Opportunity (EEO)" = "ISS109",
+                                    "111: Internal Review" = "ISS111",
+                                    "112: Installation Safety/Occupational Health" = "ISS112",
+                                    "115: Program Budget" = "ISS115",
+                                    "116: Support Agreement (MOU/MOA) Mgmt" = "ISS116",
+                                    "118: Installation TDA Management" = "ISS118",
+                                    "121: Management Analysis" = "ISS121",
+                                    "113: Administrative Management" = "ISS113",
+                                    "250: Substance Abuse" = "ISS250",
+                                    "800: Military Personnel Services" = "ISS800",
+                                    "803: Continuing Education Services" = "ISS803",
+                                    "202: Army Lodging Management" = "ISS202",
+                                    "251: Army Community Service" = "ISS251",
+                                    "252: Child, Youth, and School Services" = "ISS252",
+                                    "253: Sports, Recreation, and Libraries" = "ISS253",
+                                    "254: Business Operations" = "ISS254",
+                                    "201: Family Housing Management"  = "ISS201",
+                                    "414: Facilities Maintenance - Army Family Housing" = "ISS414",
+                                    "411: Facilities Maintenance - Vertical" = "ISS411",
+                                    "420: Facilities Maintenance - Horizontal" = "ISS420"),
+                                  selected = NULL), 
+                              status='warning',width = NULL))),
+                          box(plotlyOutput("minirisk", height=350), width=NULL),
                           box(h4(strong("Risk Analysis"), align="center"),
                               p("Risk is determined as a combination of a service\'s", strong(" criticality to
-                                mission readiness"), "and the service\'s", strong("level of under-funding."),"While it\'s
-                                possible to calculate a \'risk factor\' associated with each ISS, another
-                                way of visualizing the potential impact can be demonstrated in this dynamic plot."),
+                                mission readiness"), "and the service\'s", strong("level of under-funding.")),
                               p("An ISS\'s (x,y) risk coordinates are determined by its average level of criticality, determined
                                 from the ISDI questionnaire, and the ratio of the service\'s deficit to its funding requirement,
                                 determined by the eProbe database by fiscal year."),
@@ -137,15 +168,13 @@ body <- dashboardBody(
                                one can compare two services with an equal deficit ($1 million deficit) but with different HQDA
                                requirements: large requirement (small impact) vs. small requirement (large impact) to aid the 
                                POM planning process (i.e not all deficits are created equal)."),
-                              background='yellow',width=NULL),
-                          box(h5(strong("Highest and Lowest Risk ISSs"), align="center"),
-                                p(strong("High risk "), "services lie in the bottom right quadrant on the plot",
-                                em("(high criticality level with large deficit-to-requirement ratio)"), " while ", strong("low risk"), 
-                                "services lie in the top left quadrant on the plot ", em("(low criticality level with small
-                                  deficit-to-requirement ratio).")),
-                              status='warning', width=NULL)
-                          ),
-column(width = 8, plotlyOutput("riskscatter", height=600, width=700))
+                              background='yellow',width=NULL)),
+        column(width = 7, box(plotlyOutput("riskscatter", height=650), width=NULL),
+                     box(h5(strong("Highest and Lowest Risk ISSs"), align="center"),
+                         p(strong("High risk "), "services lie in the bottom right quadrant on the plot",
+                           em("(high criticality level with large deficit-to-requirement ratio)"), " while ", strong("low risk"), 
+                           "services lie in the top left quadrant on the plot ", em("(low criticality level with small
+                                  deficit-to-requirement ratio).")),status='warning', width=NULL))
     )),
                     tabPanel("Compare ISS")
   )),

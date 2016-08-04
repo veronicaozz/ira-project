@@ -5,7 +5,7 @@ library(RColorBrewer)
 #setwd("C:/Users/veronica.m.osborn/Desktop/Veronica - ISS Services Project")
 isshist = read.csv("issforhistogram.csv")
 isslevels = read.csv("issforcritlevels2.csv", stringsAsFactor=FALSE)
-riskfeed = read.csv("riskfeed.csv")
+riskfeed = read.csv("riskfeed.csv", stringsAsFactors=FALSE)
 sorted = read.csv ("MostandLeastCrit_Sorted.csv")
 comments = read.csv("soldiercomments.csv", stringsAsFactors=FALSE, allowEscapes=TRUE)
 
@@ -23,6 +23,7 @@ shinyServer(function(input, output, session) {
   #############################################################################################
   ###############################RISK PAGE#######################################
   #############################################################################################
+  #SELECT ALL SERVICES
   output$riskscatter <- renderPlotly({
     
     dataRS <- switch(input$selectRS, 
@@ -70,13 +71,110 @@ shinyServer(function(input, output, session) {
     color <- ifelse(riskfeed$AVG > 7.34, 'red', ifelse(riskfeed$AVG > 6.27, 'darkorange', 
               ifelse(riskfeed$AVG > 5.20, 'gold', 'green')))
     
+    chosen2 <- switch(input$findISSrisk, 
+                      "ISS100" = 1, "ISS102" = 2,
+                      "ISS103" = 3, "ISS104" = 4,
+                      "ISS105" = 5, "ISS106" = 6,
+                      "ISS107" = 7, "ISS109" = 8,
+                      "ISS111" = 9, "ISS112" = 10,
+                      "ISS115" = 11, "ISS116" = 12,
+                      "ISS118" = 13, "ISS121" = 14,
+                      "ISS113" = 15, "ISS250" = 16,
+                      "ISS800" = 17, "ISS803" = 18,
+                      "ISS202" = 19, "ISS251" = 20,
+                      "ISS252" = 21, "ISS253" = 22,
+                      "ISS254" = 23, "ISS201" = 24,
+                      "ISS414" = 25, "ISS411" = 26,
+                      "ISS420" = 27,)
+    
+    a <- list(
+      x = riskfeed$AVG[chosen2],
+      y = dataRS[chosen2],
+      text = paste(input$findISSrisk),
+      xref = "x",
+      yref = "y",
+      showarrow = TRUE,
+      arrowhead = 5,
+      ax = 20,
+      ay = -40
+    )
+    
     pRS <- plot_ly(riskfeed, x=AVG,y=dataRS, 
                    text=paste(Name,sep='<br>',"Deficit: ", defRS),
                    type='scatter', mode="markers", marker=list(size=9*sizeRS, color=color)) 
-    
+
     layout(pRS, yaxis=list(title="Ratio of Deficit/Requirement (%)"), 
-           xaxis=list(title="Average Criticality Score", autorange=T, autotick=T))
+           xaxis=list(title="Readiness Impact Rating", autorange=T, autotick=T),
+           annotations=a) 
   })
+  
+  
+  #Mini Year Graph for Chosen Service
+  output$minirisk <- renderPlotly({
+  
+  dataRS <- switch(input$selectRS, 
+                   "Y2010" = riskfeed$Y2010, "Y2011" = riskfeed$Y2011,
+                   "Y2012" = riskfeed$Y2012, "Y2013" = riskfeed$Y2013,
+                   "Y2014" = riskfeed$Y2014, "Y2015" = riskfeed$Y2015,
+                   "Y2016" = riskfeed$Y2016, "Y2019" = riskfeed$Y2019,
+                   "Y2020" = riskfeed$Y2020, "Y2021" = riskfeed$Y2021,)
+  
+  chosen3 <- switch(input$findISSrisk, 
+                    "ISS100" = 1, "ISS102" = 2, "ISS103" = 3, "ISS104" = 4,
+                    "ISS105" = 5, "ISS106" = 6, "ISS107" = 7, "ISS109" = 8,
+                    "ISS111" = 9, "ISS112" = 10, "ISS115" = 11, "ISS116" = 12,
+                    "ISS118" = 13, "ISS121" = 14, "ISS113" = 15, "ISS250" = 16,
+                    "ISS800" = 17, "ISS803" = 18, "ISS202" = 19, "ISS251" = 20,
+                    "ISS252" = 21, "ISS253" = 22,  "ISS254" = 23, "ISS201" = 24,
+                    "ISS414" = 25, "ISS411" = 26, "ISS420" = 27,)
+  
+  years <- c("`10", "`11", "`12", "`13", "`14", 
+            "`15", "`16", "`17", "`18", "`19", "`20", "`21")
+  
+  ratiodata <- c(riskfeed$Y2010[chosen3], riskfeed$Y2011[chosen3],
+                riskfeed$Y2012[chosen3], riskfeed$Y2013[chosen3],
+                riskfeed$Y2014[chosen3], riskfeed$Y2015[chosen3],
+                riskfeed$Y2016[chosen3], riskfeed$Y2017[chosen3],
+                riskfeed$Y2018[chosen3], riskfeed$Y2019[chosen3],
+                riskfeed$Y2020[chosen3], riskfeed$Y2021[chosen3])
+  
+  defdata <- c(riskfeed$Def10[chosen3], riskfeed$Def11[chosen3],
+                 riskfeed$Def12[chosen3], riskfeed$Def13[chosen3],
+                 riskfeed$Def14[chosen3], riskfeed$Def15[chosen3],
+                 riskfeed$Def16[chosen3], riskfeed$Def17[chosen3],
+                 riskfeed$Def18[chosen3], riskfeed$Def19[chosen3],
+                 riskfeed$Def20[chosen3], riskfeed$Def21[chosen3])
+  
+  sizedata <- c(riskfeed$Size10[chosen3], riskfeed$Size11[chosen3],
+               riskfeed$Size12[chosen3], riskfeed$Size13[chosen3],
+               riskfeed$Size14[chosen3], riskfeed$Size15[chosen3],
+               riskfeed$Size16[chosen3], riskfeed$Size17[chosen3],
+               riskfeed$Size18[chosen3], riskfeed$Size19[chosen3],
+               riskfeed$Size20[chosen3], riskfeed$Size21[chosen3])
+  
+  colordata <- ifelse(riskfeed$AVG[chosen3] > 7.34, 'red', 
+                  ifelse(riskfeed$AVG[chosen3]> 6.27, 'darkorange', 
+                  ifelse(riskfeed$AVG[chosen3] > 5.20, 'gold', 'green')))
+  
+  point <- list(x = input$selectRS, y = dataRS[chosen3],
+    text = paste(input$findISSrisk), xref = "x", yref = "y",
+    showarrow = TRUE, arrowhead = 5, ax = 20, ay = -40)
+  
+  MRS <- plot_ly(riskfeed, x=colnames(riskfeed[3:14],),y=ratiodata, 
+                 text=paste(Name[chosen3], sep='<br>',"Deficit: ", defdata),
+                 type='scatter', mode="markers", marker=list(size=6*sizedata, 
+                 color=colordata)) 
+  
+  layout(MRS, title=Name[chosen3], titlefont=list(size=14), 
+         yaxis=list(title="Deficit/Requirement Ratio"), 
+         xaxis=list(title="Year", tickmode="array", tickvals=colnames(riskfeed[3:14],), 
+                    ticktext=years, tickfont=list(size=10), tickangle=0),
+         annotations=point) 
+})
+  
+  #COMPARE ISS
+  
+  
   
   
   
