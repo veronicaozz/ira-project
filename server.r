@@ -4,8 +4,9 @@ library(plotly)
 library(scales)
 library(data.table)
 library(dplyr)
+#Install the above packages, as well as 'gdata', 'flexdashboard'
 
-setwd("C:/Users/Veronica/Desktop/ISS Final")
+#setwd("C:/Users/Veronica/Desktop/ISS Fake Final") #CHOOSE YOUR WORKING DIRECTORY
 isshist = read.csv("issforhistogram2.csv", stringsAsFactors=FALSE)
 isslevels = read.csv("issforcritlevels2.csv", stringsAsFactors=FALSE)
 riskflip = read.csv("riskflip.csv", stringsAsFactors=FALSE)
@@ -393,18 +394,18 @@ shinyServer(function(input, output, session) {
     pRS <- plot_ly(overdf, x=overAVG, y=overdataRS, 
                    text=paste(overname, together1, sep='<br>'),
                    name='Over-Funded',
-                   type='scatter', mode="markers", marker=list(size=8*oversizeRS, color=color1, 
+                   type='scatter', mode="markers", marker=list(size=3.5*oversizeRS, color=color1, 
                                                                line=list(color='black'), opacity=0.4)) 
     pRS <- add_trace(metdf, x=metAVG, y=metdataRS, 
                      text=paste(metname, together2, sep='<br>'),
                      name='Funding Met',
-                     type='scatter', mode="markers", marker=list(size=8*metsizeRS, color=color2, 
+                     type='scatter', mode="markers", marker=list(size=3.5*metsizeRS, color=color2, 
                                                                  line=list(color='black'), opacity=0.7)) 
     
     pRS <- add_trace(underdf, x=underAVG, y=underdataRS, 
                    text=paste(undername, together3, sep='<br>'),
                    name='Under-Funded',
-                   type='scatter', mode="markers", marker=list(size=8*undersizeRS, color=color3, 
+                   type='scatter', mode="markers", marker=list(size=3.5*undersizeRS, color=color3, 
                                                                opacity=0.8)) 
     
     layout(pRS, title=paste('Risk for All Installation Services in', input$selectRS),
@@ -482,7 +483,7 @@ shinyServer(function(input, output, session) {
   
   MRS <- plot_ly(riskfeed, x=colnames(riskfeed[3:14],),y=ratiodata, 
                  text=paste(Name[chosen3], sep='<br>',together, info),
-                 type='scatter', mode="markers", marker=list(size=4*sizedata, 
+                 type='scatter', mode="markers", marker=list(size=3*sizedata, 
                  color=colordata, opacity=opacitydata)) 
   
   layout(MRS, title=paste('Annual Risk for ', Name[chosen3]), 
@@ -512,7 +513,7 @@ output$comparerisk <- renderPlotly({
       
       p <- add_trace(p, y=eval(parse(text=selected[i])), x=years, mode="markers",
                      text=paste("Deficit: ", dollar(eval(parse(text=selected[i])))[14:25]),
-                     marker=list(size=6*(eval(parse(text=selected[i])))[26:37], 
+                     marker=list(size=3.5*(eval(parse(text=selected[i])))[26:37], 
                                  color=ifelse(eval(parse(text=selected[i]))[13] > 7.34, 'red', 
                                           ifelse(eval(parse(text=selected[i]))[13]> 6.27, 'darkorange', 
                                              ifelse(eval(parse(text=selected[i]))[13] > 5.20, 'gold', 'green'))),
