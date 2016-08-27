@@ -1,6 +1,9 @@
 # ira-project
 
-### INSTRUCTIONS FOR RUNNING APP LOCALLY:
+###To Run App from GitHub:
+In R Console, paste runGitHub( "ira-project", "veronicaozz") 
+
+### Instructions for Running App Locally:
 ##### Requires: R, RStudio
 1. Download zipped folder of .csv files, ui.R, server.R, and .png files.
     - compiledH.csv, finishedcomments2.csv, issforcritlevels2.csv, issforhistogram2.csv
