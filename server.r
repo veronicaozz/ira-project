@@ -6,7 +6,7 @@ library(data.table)
 library(dplyr)
 #Install the above packages, as well as 'gdata', 'flexdashboard'
 
-#setwd("C:/Users/Veronica/Desktop/ira-project") #CHOOSE YOUR WORKING DIRECTORY
+setwd("C:/Users/Veronica/Desktop/ISS Fake Final") #CHOOSE YOUR WORKING DIRECTORY
 isshist = read.csv("issforhistogram2.csv", stringsAsFactors=FALSE)
 isslevels = read.csv("issforcritlevels2.csv", stringsAsFactors=FALSE)
 riskflip = read.csv("riskflip.csv", stringsAsFactors=FALSE)
@@ -1159,16 +1159,16 @@ output$minifrdfunds <- renderPlotly({
                        "Y2020" = 11, "Y2021" = 12,)
 
   
-  #point <- list(x = years[chooseyear], y = ydata[chooseyear],
-         #       xref = "x", yref = "y",
-          #      showarrow = TRUE, arrowhead = 3, ax = 0, ay = -30)
+  point <- list(x = years[chooseyear], y = ydata[chooseyear],
+                xref = "x", yref = "y",
+                showarrow = TRUE, arrowhead = 3, ax = 0, ay = -30)
   
   layout(p, title=paste0('Funding Received for ', input$frdservice),
          yaxis=list(title="Dollars", titlefont=list(size=12)), 
          xaxis=list(title=paste0(triplefins$Name[service]),
                     tickmode="array", 
                     ticktext=years, 
-                    tickfont=list(size=10), tickangle=0, titlefont=list(size=12))) #annotations=point)
+                    tickfont=list(size=10), tickangle=0, titlefont=list(size=12)), annotations=point)
 })
 
 output$minifrdreqs <- renderPlotly({
@@ -1213,16 +1213,16 @@ output$minifrdreqs <- renderPlotly({
                        "Y2018" = 9, "Y2019" = 10, 
                        "Y2020" = 11, "Y2021" = 12,)
   
- # point <- list(x = years[chooseyear], y = ydata[chooseyear],
-   #             xref = "x", yref = "y",
-    #            showarrow = TRUE, arrowhead = 3, ax = 0, ay = -30)
+point <- list(x = years[chooseyear], y = ydata[chooseyear],
+                xref = "x", yref = "y",
+                showarrow = TRUE, arrowhead = 3, ax = 0, ay = -30)
   
   layout(p, title=paste0('Annual Requirement for ', input$frdservice),
          yaxis=list(title="Dollars", titlefont=list(size=12)), 
          xaxis=list(title=paste0(triplefins$Name[service]),
                     tickmode="array", 
                     ticktext=years, titlefont=list(size=12), 
-                    tickfont=list(size=10), tickangle=0)) #annotations=point)
+                    tickfont=list(size=10), tickangle=0), annotations=point)
 })
 
 output$minifrddefs <- renderPlotly({
@@ -1277,16 +1277,16 @@ output$minifrddefs <- renderPlotly({
   defcheck <- ifelse(ydata[chooseyear] > 0, "Over-Funded", 
          ifelse(ydata[chooseyear] < 0, "Under-Funded", "Met"))
   
-  #point <- list(x = years[chooseyear], y = ydata[chooseyear],
-         #       xref = "x", yref = "y", text=paste0(defcheck), 
-           #     showarrow = TRUE, arrowhead = 3, ax = 0, ay = check)
+  point <- list(x = years[chooseyear], y = ydata[chooseyear],
+                xref = "x", yref = "y", text=paste0(defcheck), 
+                showarrow = TRUE, arrowhead = 3, ax = 0, ay = check)
   
   layout(p, title=paste0('Annual Funding Delta for ', input$frdservice),
          yaxis=list(title="Dollars", titlefont=list(size=12)), 
          xaxis=list(title=paste0(triplefins$Name[service]),
                     tickmode="array", 
                     ticktext=years, titlefont=list(size=12), 
-                    tickfont=list(size=10), tickangle=0)) #annotations=point)
+                    tickfont=list(size=10), tickangle=0), annotations=point)
 })
 
 
@@ -1345,7 +1345,7 @@ output$minifrdreqs2 <- renderPlotly({
          xaxis=list(title=paste0(triplefins$Name[service]), titlefont=list(size=11),
                     tickmode="array", 
                     ticktext=years, 
-                    tickfont=list(size=10), tickangle=0)) #annotations=point)
+                    tickfont=list(size=10), tickangle=0), annotations=point)
 })
 
 output$minifrdfunds2 <- renderPlotly({
@@ -1389,16 +1389,16 @@ output$minifrdfunds2 <- renderPlotly({
                name=triplefins$ISS[service], type="bar",
                marker=list(color = toRGB("seagreen")))
   
-  #point <- list(x = years[chooseyear], y = ydata[chooseyear],
-      #          xref = "x", yref = "y",
-       #         showarrow = TRUE, arrowhead = 3, ax = 0, ay = -25)
+  point <- list(x = years[chooseyear], y = ydata[chooseyear],
+                xref = "x", yref = "y",
+                showarrow = TRUE, arrowhead = 3, ax = 0, ay = -25)
   
   layout(p, title=paste0('Annual Funding Received for ', input$selectF), titlefont=list(size=13),
          yaxis=list(title="Dollars", titlefont=list(size=11)), 
          xaxis=list(title=paste0(triplefins$Name[service]), titlefont=list(size=11),
                     tickmode="array", 
                     ticktext=years, 
-                    tickfont=list(size=10), tickangle=0)) #annotations=point)
+                    tickfont=list(size=10), tickangle=0), annotations=point)
 })
 
 
