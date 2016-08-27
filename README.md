@@ -1,8 +1,7 @@
 # ira-project
 
 ###To Run App from GitHub:
-In R Console, run:
-    runGitHub( "ira-project", "veronicaozz") 
+In R Console: runGitHub( "ira-project", "veronicaozz") 
 
 ### Instructions for Running App Locally:
 ##### Requires: R, RStudio
