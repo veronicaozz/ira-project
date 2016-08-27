@@ -1336,9 +1336,9 @@ output$minifrdreqs2 <- renderPlotly({
                        "Y2018" = 9, "Y2019" = 10, 
                        "Y2020" = 11, "Y2021" = 12,)
   
-#  point <- list(x = years[chooseyear], y = ydata[chooseyear],
-   #             xref = "x", yref = "y",
-   #             showarrow = TRUE, arrowhead = 3, ax = 0, ay = -25)
+point <- list(x = years[chooseyear], y = ydata[chooseyear],
+                xref = "x", yref = "y",
+                showarrow = TRUE, arrowhead = 3, ax = 0, ay = -25)
   
   layout(p, title=paste0('Annual Requirement for ', input$selectF), titlefont=list(size=13),
          yaxis=list(title="Dollars", titlefont=list(size=11)), 
