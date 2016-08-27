@@ -6,7 +6,7 @@ library(data.table)
 library(dplyr)
 #Install the above packages, as well as 'gdata', 'flexdashboard'
 
-#setwd("C:/Users/Veronica/Desktop/ISS Fake Final") #CHOOSE YOUR WORKING DIRECTORY
+#setwd("C:/Users/Veronica/Desktop/ira-project") #CHOOSE YOUR WORKING DIRECTORY
 isshist = read.csv("issforhistogram2.csv", stringsAsFactors=FALSE)
 isslevels = read.csv("issforcritlevels2.csv")
 riskflip = read.csv("riskflip.csv", stringsAsFactors=FALSE)
