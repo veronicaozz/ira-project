@@ -16,7 +16,7 @@ In R Console: runGitHub( "ira-project", "veronicaozz")
 6. Within ui.R and server.R code, set working directory (i.e. setwd("C:/Users/Veronica/Desktop/ira-project").
 7. Click 'Run App'.
 
-Please note that the financial data has been randomized to protect private ePROBE database queries.
+####Please note that the financial data has been randomized to protect private ePROBE database queries.
 
 More information regarding the project is available in the project's wiki, including research design, timeline, methodology, and  objectives.
 
