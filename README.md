@@ -11,16 +11,17 @@ runGitHub( "ira-project", "veronicaozz")
 1. Download zipped folder of .csv files, ui.R, server.R, and .png files.
     - compiledH.csv, finishedcomments2.csv, issforcritlevels2.csv, issforhistogram2.csv
     - riskfeed.csv, riskflip.csv, triplefinancials.csv, ape-iss-match.csv, MostandLeastCrit_Sorted.csv
-2. Extract all files into a named folder (i.e. Desktop/ira-project).
-3. Within named folder, place all .png files into folder named www. (i.e. Desktop/ira-project/www).
+2. Extract all files into a named folder (e.g. Desktop/ira-project).
+3. Within named folder, place all .png files into folder named www (i.e. Desktop/ira-project/www).
 4. Open ui.R and server.R files in RStudio.
 5. Install all required packages if not previously installed.
   'gdata', 'flexdashboard', 'shiny', 'shinydashboard', 'plotly', 'scales', 'data.table', 'dplyr'
 6. Within ui.R and server.R code, set working directory:
 ```r
-setwd("C:/Users/Veronica/Desktop/ira-project")
+setwd("C:/path/to/ira-project/")
 ```
-7. Click 'Run App'.
+
+Finally, Click 'Run App'.
 
 ####Please note that the financial data has been randomized to protect private ePROBE database queries.
 
