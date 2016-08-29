@@ -1,7 +1,10 @@
 # ira-project
 
 ###To Run App from GitHub:
-In R Console: runGitHub( "ira-project", "veronicaozz") 
+In R Console do:
+```r
+runGitHub( "ira-project", "veronicaozz") 
+```
 
 ### Instructions for Running App Locally:
 ##### Requires: R, RStudio
@@ -13,7 +16,10 @@ In R Console: runGitHub( "ira-project", "veronicaozz")
 4. Open ui.R and server.R files in RStudio.
 5. Install all required packages if not previously installed.
   'gdata', 'flexdashboard', 'shiny', 'shinydashboard', 'plotly', 'scales', 'data.table', 'dplyr'
-6. Within ui.R and server.R code, set working directory (i.e. setwd("C:/Users/Veronica/Desktop/ira-project").
+6. Within ui.R and server.R code, set working directory:
+```r
+setwd("C:/Users/Veronica/Desktop/ira-project")
+```
 7. Click 'Run App'.
 
 ####Please note that the financial data has been randomized to protect private ePROBE database queries.
