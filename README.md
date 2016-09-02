@@ -1,6 +1,18 @@
 # ira-project
 
 ###To Run App from GitHub:
+Install all packages required for application if not previously installed.
+```r
+install.packages('gdata')
+install.packages('flexdashboard')
+install.packages('shiny')
+install.packages('shinydashboard')
+install.packages('plotly')
+install.packages('scales')
+install.packages('data.table')
+install.packages('dplyr')
+```
+
 In R Console do:
 ```r
 runGitHub( "ira-project", "veronicaozz") 
