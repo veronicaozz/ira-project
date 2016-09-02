@@ -15,6 +15,7 @@ install.packages('dplyr')
 
 In R Console do:
 ```r
+library(shiny)
 runGitHub( "ira-project", "veronicaozz") 
 ```
 
