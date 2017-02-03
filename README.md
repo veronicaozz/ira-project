@@ -12,6 +12,14 @@ install.packages('scales')
 install.packages('data.table')
 install.packages('dplyr')
 ```
+####Note 2/2/2017: 
+Because of the updates to Plotly's 4.0 version R library, run this code under Plotly 3.6.0. to preserve functionality of all graphs and visualizations. 
+```r
+install.packages('devtools')
+require(devtools)
+install_version("plotly", version = "3.6.0", repos = "http://cran.us.r-project.org")
+```
+Updated server.R and ui.R files for shiny 1.0.0 (as of 1/12/2017)
 
 In R Console do:
 ```r
