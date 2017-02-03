@@ -21,6 +21,8 @@ install_version("plotly", version = "3.6.0", repos = "http://cran.us.r-project.o
 ```
 Updated server.R and ui.R files for shiny 1.0.0 (as of 1/12/2017)
 
+
+
 In R Console do:
 ```r
 library(shiny)
