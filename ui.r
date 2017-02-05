@@ -1,12 +1,11 @@
-library(shiny)
+library(shiny) #1.0 version
 library(shinydashboard)
-library(plotly)
+library(plotly) #3.6.0 version
 library(scales)
 library(data.table)
 library(dplyr)
 #Install the above packages, as well as 'gdata', 'flexdashboard'
 
-#setwd("C:/Users/Veronica/Desktop/ISS Fake Final") #CHOOSE YOUR WORKING DIRECTORY
 isshist = read.csv("issforhistogram2.csv", stringsAsFactors=FALSE)
 isslevels = read.csv("issforcritlevels2.csv")
 riskflip = read.csv("riskflip.csv", stringsAsFactors=FALSE)
@@ -90,13 +89,13 @@ choicelist = list(
 
 sidebar <- dashboardSidebar(
     sidebarMenu(
-      menuItem("Home", tabName = "home", icon = icon("fa fa-home")),
-      menuItem("Methodology", tabName = "methodology", icon = icon("fa fa-briefcase")),
-      menuItem("Readiness Impact Levels", tabName = "criticality", icon = icon("fa fa-bar-chart")),
-      menuItem("Financial Deficits", tabName = "deficits", icon = icon("fa fa-line-chart")),
-      menuItem("Risk Assessment", tabName = "risk", icon = icon("fa fa-bomb")),
-      menuItem("Demographics", tabName = "demographics", icon = icon("fa fa-male")),
-      menuItem("Raw Data", tabName = "data", icon = icon("fa fa-file-text"))
+      menuItem("Home", tabName = "home", icon = icon("home")),
+      menuItem("Methodology", tabName = "methodology", icon = icon("briefcase")),
+      menuItem("Readiness Impact Levels", tabName = "criticality", icon = icon("bar-chart")),
+      menuItem("Financial Deficits", tabName = "deficits", icon = icon("line-chart")),
+      menuItem("Risk Assessment", tabName = "risk", icon = icon("bomb")),
+      menuItem("Demographics", tabName = "demographics", icon = icon("male")),
+      menuItem("Raw Data", tabName = "data", icon = icon("file-text"))
       #menuItem("References", tabName = "references", icon = icon("fa fa-book"))
       #menuItem("Key Insights", tabName = "insights", icon = icon("fa fa-key")),
     ))

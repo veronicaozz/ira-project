@@ -873,7 +873,7 @@ output$minifins <- renderPlotly({
                     "ISS902"=54, "ISS903"=55, "ISS904"=56, "ISS905"=57, "ISS906"=58,
                     "ISS701"=59, "ISS703"=60, "ISS700"=61, "ISS300"=62, "ISS301"=63,
                     "ISS302"=64, "ISS303"=65, "ISS304"=66, "ISS305"=67, "ISS306"=68,
-                    "ISS307"=69, "ISS308"=70, "ISS309"=71)
+                    "ISS307"=69, "ISS308"=70, "ISS309"=71,)
 
   p <- plot_ly(triplefins, x=1, y=dollar(funds[service]),
                 name='Funding', type="bar",marker=list(color = toRGB("seagreen")))
